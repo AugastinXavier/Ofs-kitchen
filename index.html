@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OFS Kitchen | Our Lady Fatima Shrine</title>
+<style>
+:root{--blue:#1976c9;--sky:#eaf6ff;--dark:#123d64;--white:#fff}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#eaf7ff,#fff);color:var(--dark)}
+header{text-align:center;padding:34px 18px 25px;background:linear-gradient(135deg,#cfeeff,#fff);border-bottom:4px solid #8dc8ef}
+.logo{font-size:52px;font-weight:800;letter-spacing:5px;color:#0e5d9f} h1{margin:4px 0;font-size:32px} .tag{font-style:italic;color:#3978a9}
+main{max-width:1000px;margin:auto;padding:18px} section{margin:28px 0} h2{color:#1267aa;border-bottom:2px solid #acd8f5;padding-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px} .card{background:white;border:1px solid #c8e5f7;border-radius:16px;padding:16px;box-shadow:0 5px 18px #0b568a18} .card h3{margin:0 0 7px;color:#075b99} .card p{margin:0;color:#52728a}
+.add{background:#f4fbff;border:2px dashed #8dc8ef;border-radius:16px;padding:18px} input,select,button{padding:11px;border:1px solid #9fcbe7;border-radius:9px;font-size:15px} button{background:#1475bb;color:white;border:0;cursor:pointer} .form{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px}
+footer{text-align:center;padding:28px;background:#e3f4ff;margin-top:30px} .small{font-size:13px;color:#63809a}
+@media(max-width:650px){.form{grid-template-columns:1fr} .logo{font-size:42px}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">OFS</div>
+<h1>OFS Kitchen</h1>
+<div>Our Lady Fatima Shrine</div>
+<p class="tag">Cooked with Love • Served with Faith</p>
+</header>
+<main>
+<p><strong>Welcome!</strong> Explore our Cooking Without Fire creations. Scan the QR at our stall to open this menu.</p>
+<div id="menu"><section><h2>Main Course</h2><div class="grid"><article class="card"><h3>Rasam</h3><p>Light, tangy &amp; comforting</p></article><article class="card"><h3>Sambar</h3><p>Traditional vegetable-lentil style</p></article><article class="card"><h3>Ice Biriyani</h3><p>Chilled aval, curd, small onions &amp; green chilli</p></article></div></section><section><h2>Side Dish</h2><div class="grid"><article class="card"><h3>Chamanthi</h3><p>Coconut, onion, dry chilli &amp; mango</p></article><article class="card"><h3>Manga Thokku</h3><p>Raw mango, chilli &amp; coconut oil</p></article><article class="card"><h3>Garlic Chutney</h3><p>Garlic, chilli &amp; coconut oil</p></article><article class="card"><h3>Veg Salad</h3><p>Fresh cucumber, carrot and vegetables</p></article><article class="card"><h3>Veg Sandwich</h3><p>Fresh vegetables with bread</p></article><article class="card"><h3>Momos</h3><p>Carrot, cabbage, spring onion &amp; rice paper</p></article></div></section><section><h2>Sweet</h2><div class="grid"><article class="card"><h3>Kadalai Maavu Urundai</h3><p>Pottukadalai, jaggery, ghee &amp; peanut</p></article><article class="card"><h3>Carrot Ladoo</h3><p>Carrot, nuts, honey &amp; ghee</p></article><article class="card"><h3>Besan Ladoo</h3><p>Besan, sugar, cardamom, ghee &amp; nuts</p></article><article class="card"><h3>Aval Payasam</h3><p>Aval, jaggery, banana, nuts &amp; milk/coconut milk</p></article><article class="card"><h3>Rasamalai</h3><p>Milk, sugar, cardamom, milk powder &amp; bread</p></article><article class="card"><h3>Fruit Salad</h3><p>Fresh seasonal fruits with honey</p></article></div></section><section><h2>Juice &amp; Drinks</h2><div class="grid"><article class="card"><h3>Rose Milk</h3><p>Milk, rose essence, sugar, sabja &amp; badam pisin</p></article><article class="card"><h3>Buttermilk</h3><p>Curd, ginger, coriander, cumin &amp; chilli</p></article><article class="card"><h3>Mint Mojito</h3><p>Mint, lemon, sugar, ice &amp; Sprite</p></article><article class="card"><h3>Tender Coconut</h3><p>Tender coconut water &amp; soft coconut</p></article></div></section></div>
+<section class="add">
+<h2>Add a Dish</h2>
+<div class="form">
+<input id="name" placeholder="Dish name">
+<select id="cat">
+<option>Main Course</option><option>Side Dish</option><option>Sweet</option><option>Juice & Drinks</option>
+</select>
+<input id="desc" placeholder="Short description">
+<button onclick="addItem()">Add</button>
+</div>
+<p class="small">Added dishes are saved on this device. Refreshing the page will keep them.</p>
+</section>
+</main>
+<footer>
+<strong>NO FIRE. JUST FLAVOR.</strong><br>Pure • Fresh • Healthy<br><span class="small">Our Lady Fatima Shrine</span>
+</footer>
+<script>
+function addItem(){
+ const n=document.getElementById('name').value.trim(), c=document.getElementById('cat').value, d=document.getElementById('desc').value.trim();
+ if(!n)return alert('Please enter a dish name.');
+ const saved=JSON.parse(localStorage.getItem('ofsItems')||'[]');
+ saved.push({n,c,d}); localStorage.setItem('ofsItems',JSON.stringify(saved)); renderSaved(); 
+ document.getElementById('name').value=''; document.getElementById('desc').value='';
+}
+function renderSaved(){
+ const saved=JSON.parse(localStorage.getItem('ofsItems')||'[]');
+ const box=document.getElementById('menu');
+ saved.forEach((x,i)=>{
+   let sec=[...box.querySelectorAll('section')].find(s=>s.querySelector('h2')?.textContent===x.c);
+   if(!sec){sec=document.createElement('section');sec.innerHTML='<h2>'+x.c+'</h2><div class="grid"></div>';box.appendChild(sec);}
+   const card=document.createElement('article');card.className='card';
+   card.innerHTML='<h3>'+escapeHtml(x.n)+'</h3><p>'+escapeHtml(x.d)+'</p>';
+   sec.querySelector('.grid').appendChild(card);
+ });
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+</script>
+</body></html>
