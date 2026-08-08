@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#5b351f">
+<meta name="description" content="FYA Kitchen — Traditional flavours, lovingly prepared for Our Lady Fatima Shrine.">
+<title>FYA Kitchen | Our Lady Fatima Shrine</title>
+
+<style>
+:root{
+  --mud:#5b351f;
+  --mud-dark:#3d2417;
+  --terracotta:#9b4f2f;
+  --leaf:#526f2d;
+  --leaf-dark:#33491c;
+  --leaf-light:#879b48;
+  --cream:#f8efd9;
+  --paper:#fffaf0;
+  --gold:#c69a45;
+  --ink:#33251c;
+  --muted:#765e4d;
+  --shadow:0 16px 40px rgba(54,32,18,.16);
+  --radius:24px;
+}
+*{box-sizing:border-box;scroll-behavior:smooth}
+html{scroll-padding-top:82px}
+body{
+  margin:0;color:var(--ink);
+  font-family:Georgia,"Times New Roman",serif;
+  background:
+    radial-gradient(circle at 12% 10%,rgba(255,255,255,.18) 0 2px,transparent 3px),
+    radial-gradient(circle at 75% 30%,rgba(255,255,255,.12) 0 1px,transparent 2px),
+    linear-gradient(135deg,#c9a57b,#a97e56 48%,#c29b70);
+  background-size:90px 90px,130px 130px,auto;
+}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{width:min(1180px,92%);margin:auto}
+
+/* Top navigation */
+.nav{
+  position:sticky;top:0;z-index:1000;
+  background:rgba(61,36,23,.96);
+  backdrop-filter:blur(10px);
+  color:#fff8e9;
+  box-shadow:0 5px 20px rgba(0,0,0,.2);
+}
+.nav-inner{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{font-weight:900;letter-spacing:1px;font-size:1.25rem}
+.brand small{display:block;font-size:.68rem;font-weight:400;letter-spacing:2px;color:#e7c986;margin-top:2px}
+.nav-links{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.nav-links a{padding:10px 12px;border-radius:999px;font-size:.92rem}
+.nav-links a:hover{background:#80603d}
+.menu-btn{display:none;border:1px solid #c8a675;background:transparent;color:#fff;padding:8px 12px;border-radius:10px}
+
+/* Hero */
+.hero{
+  min-height:calc(100vh - 70px);
+  display:grid;place-items:center;text-align:center;position:relative;overflow:hidden;
+  background:
+    linear-gradient(rgba(58,35,21,.58),rgba(58,35,21,.68)),
+    radial-gradient(circle at center,#b98758,#694326 75%);
+}
+.hero:before,.hero:after{
+  content:"";position:absolute;width:300px;height:120px;
+  border:2px solid rgba(229,201,139,.45);border-radius:50%;
+  transform:rotate(-22deg);
+}
+.hero:before{left:-80px;top:100px}
+.hero:after{right:-80px;bottom:90px;transform:rotate(22deg)}
+.hero-content{position:relative;z-index:2;color:#fff8e8;padding:70px 0}
+.cross{font-size:3.2rem;color:#e8c879;margin-bottom:10px}
+.kicker{letter-spacing:4px;text-transform:uppercase;color:#e7cf98;font-size:.86rem}
+.hero h1{font-size:clamp(3.3rem,9vw,7.5rem);line-height:.9;margin:14px 0 18px;letter-spacing:3px}
+.hero h1 span{color:#e7c879}
+.hero p{font-size:clamp(1rem,2vw,1.35rem);max-width:720px;margin:0 auto 28px;line-height:1.7}
+.cta{
+  display:inline-flex;align-items:center;gap:8px;padding:14px 24px;
+  background:var(--leaf);border:2px solid #a8bd68;color:white;border-radius:999px;
+  font-weight:bold;box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+.cta:hover{transform:translateY(-2px);background:var(--leaf-dark)}
+
+/* Intro */
+.intro{padding:70px 0 35px;text-align:center;background:var(--cream)}
+.section-kicker{color:var(--terracotta);text-transform:uppercase;letter-spacing:3px;font-size:.8rem;font-weight:bold}
+h2{font-size:clamp(2rem,5vw,3.5rem);margin:8px 0 12px;color:var(--mud-dark)}
+.section-lead{max-width:760px;margin:auto;line-height:1.8;color:var(--muted)}
+.ornament{color:var(--gold);font-size:1.4rem;letter-spacing:10px;margin:15px 0}
+
+/* Menu area */
+.menu-wrap{padding:35px 0 80px;background:var(--cream)}
+.category-nav{
+  position:sticky;top:70px;z-index:50;
+  background:rgba(248,239,217,.94);backdrop-filter:blur(8px);
+  padding:12px 0;border-bottom:1px solid rgba(91,53,31,.12)
+}
+.category-inner{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
+.category-inner a{
+  flex:0 0 auto;padding:9px 15px;border:1px solid #c9a982;
+  border-radius:999px;background:#fff8e8;color:var(--mud);font-size:.88rem
+}
+.category-inner a:hover{background:var(--mud);color:white}
+.menu-section{padding-top:58px}
+.menu-section h3{text-align:center;font-size:2.1rem;color:var(--mud);margin:0 0 25px}
+.menu-section h3 span{display:block;color:var(--leaf);font-size:.75rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:5px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{
+  position:relative;overflow:hidden;background:rgba(255,250,240,.96);
+  border:1px solid #dfcda9;border-radius:var(--radius);padding:24px;
+  box-shadow:var(--shadow);transition:.3s transform,.3s box-shadow;
+}
+.card:hover{transform:translateY(-7px);box-shadow:0 24px 48px rgba(54,32,18,.22)}
+.card:before{
+  content:"";position:absolute;right:-38px;top:-38px;width:110px;height:110px;
+  border-radius:50%;background:rgba(82,111,45,.10)
+}
+.number{
+  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  background:var(--leaf);color:white;font-weight:bold;float:right
+}
+.card h4{font-size:1.35rem;margin:0 45px 8px 0;color:var(--mud-dark)}
+.card p{color:var(--muted);line-height:1.55;margin:7px 0}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+.badge{padding:6px 9px;border-radius:8px;background:#efe1bf;color:var(--mud-dark);font-size:.76rem;font-weight:bold}
+.badge.green{background:#dce8bd;color:#3e561e}
+.price-replacement{margin-top:14px;padding-top:12px;border-top:1px dashed #cdb995;color:var(--terracotta);font-weight:bold}
+
+/* Traditional feature strip */
+.tradition{
+  background:var(--mud-dark);color:#fff5e2;padding:70px 0;position:relative;overflow:hidden
+}
+.tradition:before{
+  content:"";position:absolute;inset:18px;border:1px solid rgba(231,200,121,.35);pointer-events:none
+}
+.tradition-grid{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center}
+.tradition h2{color:#f4d88e}
+.tradition p{line-height:1.9;color:#eadcc8}
+.leaf-box{font-size:5rem;text-align:center;color:#849e45}
+.feature-list{display:grid;gap:12px;margin-top:25px}
+.feature-list div{padding:13px 15px;background:rgba(255,255,255,.07);border-left:4px solid var(--gold);border-radius:8px}
+
+/* Team */
+.team{padding:80px 0;background:var(--cream)}
+.team-photo{
+  max-height:650px;width:100%;object-fit:cover;object-position:center;
+  border-radius:28px;border:10px solid #ead7b3;box-shadow:var(--shadow);
+}
+.team-caption{text-align:center;margin:18px auto 0;max-width:800px;color:var(--muted);line-height:1.7}
+.team-badge{
+  display:inline-block;margin-top:15px;padding:9px 15px;border-radius:999px;
+  background:#dce8bd;color:#3e561e;font-weight:bold
+}
+
+/* Footer */
+footer{background:#2d1a11;color:#eadcc8;padding:55px 0 25px;text-align:center}
+footer h2{color:#e7c879;margin-bottom:8px}
+footer p{line-height:1.7}
+.footer-line{height:1px;background:#6c4b34;margin:30px 0 20px}
+.copy{font-size:.82rem;color:#bca894}
+
+/* reveal animation */
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}
+.reveal.show{opacity:1;transform:none}
+
+/* mobile */
+@media(max-width:850px){
+  .nav-inner{min-height:62px}
+  .menu-btn{display:block}
+  .nav-links{
+    display:none;position:absolute;left:0;right:0;top:62px;
+    background:#3d2417;padding:12px;box-shadow:0 10px 20px rgba(0,0,0,.25)
+  }
+  .nav-links.open{display:grid}
+  .nav-links a{text-align:center}
+  .category-nav{top:62px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .tradition-grid{grid-template-columns:1fr}
+}
+@media(max-width:580px){
+  .container{width:min(94%,560px)}
+  .hero-content{padding:60px 0}
+  .hero h1{font-size:3.7rem}
+  .grid{grid-template-columns:1fr}
+  .card{padding:20px}
+  .menu-section h3{font-size:1.8rem}
+  .team-photo{border-width:6px}
+}
+</style>
+</head>
+
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#home">FYA KITCHEN<small>OUR LADY FATIMA SHRINE</small></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#main-course">Main Course</a>
+      <a href="#side-dish">Side Dish</a>
+      <a href="#sweet">Sweet</a>
+      <a href="#juice-drinks">Juice & Drinks</a>
+      <a href="#team">Our Team</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="hero-content container">
+    <div class="cross">✝</div>
+    <div class="kicker">Our Lady Fatima Shrine presents</div>
+    <h1>FYA <span>KITCHEN</span></h1>
+    <p>Traditional flavours, humble ingredients and joyful memories — served with love, faith and the spirit of togetherness.</p>
+    <a class="cta" href="#menu">Explore Our Traditional Menu ↓</a>
+  </div>
+</header>
+
+<section class="intro" id="menu">
+  <div class="container">
+    <div class="section-kicker">No Fire • Just Flavour</div>
+    <h2>Our Traditional Menu</h2>
+    <div class="ornament">❧ ✦ ❧</div>
+    <p class="section-lead">
+      A celebration of familiar flavours presented in a traditional South Indian style.
+      Every dish carries a little story, a little nutrition and a lot of love.
+    </p>
+  </div>
+</section>
+
+<section class="menu-wrap">
+  <div class="category-nav">
+    <div class="container category-inner">
+      <a href="#main-course">🍚 Main Course</a>
+      <a href="#side-dish">🥥 Side Dish</a>
+      <a href="#sweet">🍮 Sweet</a>
+      <a href="#juice-drinks">🥤 Juice & Drinks</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <section class="menu-section reveal" id="main-course">
+      <h3><span>Banana Leaf Favourites</span>Main Course</h3>
+      <div class="grid">
+        <article class="card"><span class="number">01</span><h4>Rasam</h4><p>Light, tangy and aromatic South Indian comfort food.</p><div class="badges"><span class="badge">≈ 45 kcal</span><span class="badge green">Digestive spices</span></div><div class="price-replacement">Benefits: Pepper, cumin and herbs can support digestion.</div></article>
+        <article class="card"><span class="number">02</span><h4>Sambar</h4><p>A wholesome lentil and vegetable preparation with traditional spices.</p><div class="badges"><span class="badge">≈ 120 kcal</span><span class="badge green">Protein + fibre</span></div><div class="price-replacement">Benefits: Lentils provide plant protein while vegetables add fibre.</div></article>
+        <article class="card"><span class="number">03</span><h4>Ice Biriyani</h4><p>A creative no-fire style rice preparation served chilled.</p><div class="badges"><span class="badge">≈ 210 kcal</span><span class="badge green">Energy</span></div><div class="price-replacement">Benefits: Rice provides carbohydrates for energy; vegetables can add micronutrients.</div></article>
+      </div>
+    </section>
+
+    <section class="menu-section reveal" id="side-dish">
+      <h3><span>Homestyle Companions</span>Side Dish</h3>
+      <div class="grid">
+        <article class="card"><span class="number">04</span><h4>Chamanthi</h4><p>Fresh coconut-based traditional chutney with a rustic flavour.</p><div class="badges"><span class="badge">≈ 90 kcal</span><span class="badge green">Healthy fats</span></div><div class="price-replacement">Benefits: Coconut contributes healthy fats and flavourful herbs.</div></article>
+        <article class="card"><span class="number">05</span><h4>Manga Thokku</h4><p>Spicy, tangy raw-mango pickle with a bold traditional taste.</p><div class="badges"><span class="badge">≈ 35 kcal</span><span class="badge green">Vitamin C</span></div><div class="price-replacement">Benefits: Mango provides antioxidants and vitamin C.</div></article>
+        <article class="card"><span class="number">06</span><h4>Garlic Chutney</h4><p>A punchy chutney made with garlic and traditional spices.</p><div class="badges"><span class="badge">≈ 50 kcal</span><span class="badge green">Aromatic</span></div><div class="price-replacement">Benefits: Garlic contains naturally occurring sulphur compounds.</div></article>
+        <article class="card"><span class="number">07</span><h4>Veg Salad</h4><p>Fresh vegetables combined for a colourful and crunchy side.</p><div class="badges"><span class="badge">≈ 70 kcal</span><span class="badge green">Fibre rich</span></div><div class="price-replacement">Benefits: Vegetables provide fibre, vitamins and hydration.</div></article>
+        <article class="card"><span class="number">08</span><h4>Veg Sandwich</h4><p>A simple fresh vegetable sandwich, perfect for a light bite.</p><div class="badges"><span class="badge">≈ 180 kcal</span><span class="badge green">Energy</span></div><div class="price-replacement">Benefits: Vegetables add fibre and bread provides carbohydrates.</div></article>
+        <article class="card"><span class="number">09</span><h4>Momos</h4><p>Soft dumplings filled with vegetables and served as a fun side.</p><div class="badges"><span class="badge">≈ 160 kcal</span><span class="badge green">Veggies</span></div><div class="price-replacement">Benefits: Vegetable filling adds fibre and variety to the meal.</div></article>
+      </div>
+    </section>
+
+    <section class="menu-section reveal" id="sweet">
+      <h3><span>A Little Sweetness</span>Sweet</h3>
+      <div class="grid">
+        <article class="card"><span class="number">10</span><h4>Kadalai Maavu Urundai</h4><p>Traditional gram-flour sweet with a comforting homemade taste.</p><div class="badges"><span class="badge">≈ 130 kcal</span><span class="badge green">Protein</span></div><div class="price-replacement">Benefits: Gram flour provides plant protein and some fibre.</div></article>
+        <article class="card"><span class="number">11</span><h4>Carrot Ladoo</h4><p>Colourful carrot-based sweet with a soft festive texture.</p><div class="badges"><span class="badge">≈ 120 kcal</span><span class="badge green">Beta-carotene</span></div><div class="price-replacement">Benefits: Carrots are a source of beta-carotene.</div></article>
+        <article class="card"><span class="number">12</span><h4>Besan Ladoo</h4><p>Classic roasted gram-flour ladoo with a rich traditional aroma.</p><div class="badges"><span class="badge">≈ 140 kcal</span><span class="badge green">Plant protein</span></div><div class="price-replacement">Benefits: Besan provides protein and minerals such as iron.</div></article>
+        <article class="card"><span class="number">13</span><h4>Aval Payasam</h4><p>Sweet flattened-rice dessert with a creamy, festive character.</p><div class="badges"><span class="badge">≈ 170 kcal</span><span class="badge green">Quick energy</span></div><div class="price-replacement">Benefits: Aval provides carbohydrates while milk contributes calcium.</div></article>
+        <article class="card"><span class="number">14</span><h4>Rasmalai</h4><p>Soft, creamy dessert with a delicate milk-based flavour.</p><div class="badges"><span class="badge">≈ 190 kcal</span><span class="badge green">Calcium</span></div><div class="price-replacement">Benefits: Milk-based ingredients provide calcium and protein.</div></article>
+        <article class="card"><span class="number">15</span><h4>Fruit Salad</h4><p>A refreshing mix of colourful seasonal fruits.</p><div class="badges"><span class="badge">≈ 110 kcal</span><span class="badge green">Vitamins + fibre</span></div><div class="price-replacement">Benefits: Fresh fruits provide fibre, water and a variety of vitamins.</div></article>
+      </div>
+    </section>
+
+    <section class="menu-section reveal" id="juice-drinks">
+      <h3><span>Refreshing Traditions</span>Juice & Drinks</h3>
+      <div class="grid">
+        <article class="card"><span class="number">16</span><h4>Rose Milk</h4><p>Cool, creamy and fragrant — a nostalgic favourite.</p><div class="badges"><span class="badge">≈ 150 kcal</span><span class="badge green">Calcium</span></div><div class="price-replacement">Benefits: Milk provides calcium and protein; best enjoyed in moderation.</div></article>
+        <article class="card"><span class="number">17</span><h4>Buttermilk</h4><p>Light and cooling traditional drink, perfect with a meal.</p><div class="badges"><span class="badge">≈ 45 kcal</span><span class="badge green">Refreshing</span></div><div class="price-replacement">Benefits: A light dairy drink that can contribute calcium and hydration.</div></article>
+        <article class="card"><span class="number">18</span><h4>Mint Mojito</h4><p>Fresh mint and citrus-inspired cooler with a lively finish.</p><div class="badges"><span class="badge">≈ 60 kcal</span><span class="badge green">Refreshing</span></div><div class="price-replacement">Benefits: Mint and citrus add freshness; calorie count varies with sweetener.</div></article>
+        <article class="card"><span class="number">19</span><h4>Tender Coconut</h4><p>Natural coconut water served chilled for a refreshing finish.</p><div class="badges"><span class="badge">≈ 45 kcal</span><span class="badge green">Electrolytes</span></div><div class="price-replacement">Benefits: Naturally provides fluids and electrolytes such as potassium.</div></article>
+      </div>
+    </section>
+
+  </div>
+</section>
+
+<section class="tradition">
+  <div class="container tradition-grid">
+    <div class="leaf-box">🍃<br>🍌<br>🍃</div>
+    <div>
+      <div class="section-kicker" style="color:#e7c879">Our Story</div>
+      <h2>From Our Hands to Your Heart</h2>
+      <p>
+        FYA Kitchen brings the warmth of a traditional gathering to the modern screen.
+        Inspired by the banana leaf, earthy clay pots and familiar homemade flavours,
+        our menu celebrates food as a way of sharing joy and community.
+      </p>
+      <div class="feature-list">
+        <div>🌿 Traditional flavours & presentation</div>
+        <div>🍌 Inspired by the banana-leaf feast</div>
+        <div>🤝 Made for sharing, friendship & togetherness</div>
+        <div>✝ Cooked with Love • Served with Faith</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="team" id="team">
+  <div class="container">
+    <div style="text-align:center" class="reveal">
+      <div class="section-kicker">The People Behind FYA Kitchen</div>
+      <h2>Our Five Chefs</h2>
+      <div class="ornament">❧ ✦ ❧</div>
+      <p class="section-lead">One team, one table and five smiling faces behind this traditional feast.</p>
+    </div>
+
+    <div class="reveal" style="margin-top:35px">
+      <img class="team-photo" src="fya-kitchen-team.jpg" alt="The five FYA Kitchen team members together behind the traditional banana-leaf feast">
+      <p class="team-caption">
+        Our complete FYA Kitchen team — captured together with the traditional banana-leaf spread.
+        This single photograph represents the teamwork, friendship and joy behind every dish.
+      </p>
+      <div style="text-align:center"><span class="team-badge">5 Chefs • 1 Team • Traditional Flavours</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div style="font-size:2rem;color:#e7c879">✝</div>
+    <h2>FYA KITCHEN</h2>
+    <p>Our Lady Fatima Shrine</p>
+    <p><em>Cooked with Love • Served with Faith</em></p>
+    <div class="footer-line"></div>
+    <div class="copy">© 2026 FYA Kitchen • Traditional food, friendship & togetherness</div>
+  </div>
+</footer>
+
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => navLinks.classList.remove("open"));
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) entry.target.classList.add("show");
+  });
+},{threshold:0.12});
+
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
